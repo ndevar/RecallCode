@@ -1,0 +1,183 @@
+<?xml version="1.0" encoding="utf-8"?>
+
+<RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:orientation="horizontal"
+    android:id="@+id/mainRelativeLayout"
+    android:focusable="true"
+    android:focusableInTouchMode ="true">
+
+    <TextView
+        android:id="@+id/callDate"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:textColor="#343434"
+        android:layout_marginTop="10dp"
+        android:paddingTop="15dp"
+        android:paddingLeft="8dp"
+        android:textSize="17dp" />
+
+    <TextView
+        android:id="@+id/callDay"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_below="@id/callDate"
+        android:textColor="#343434"
+        android:layout_marginLeft="10dp"
+        android:layout_marginRight="5dp"
+        android:textStyle="italic"
+        android:textSize="14dp" />
+
+    <TextView
+        android:layout_width="20dp"
+        android:layout_height="20dp"
+        android:layout_below="@id/callDay"
+        android:layout_marginLeft="15dp"
+        android:textSize="20sp"
+        android:textColor="#343434"
+        android:id="@+id/txtRemainder"
+        android:text="@string/fa_bell" />
+
+    <ImageView
+        android:layout_width="50dp"
+        android:layout_height="50dp"
+        android:layout_marginLeft="55dp"
+        android:layout_marginTop="10dp"
+        android:id="@+id/contactPhoto"
+        />
+    <TableLayout
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:orientation="vertical"
+        android:layout_marginLeft="45dp"
+        >
+        <TableRow
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content" >
+            <TextView
+                android:id="@+id/Name"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_alignTop="@+id/imageView"
+                android:textStyle="bold"
+                android:textSize="16dp"
+                android:layout_marginTop="10dp"
+                android:layout_marginLeft="70dip"
+                android:typeface="sans" />
+        </TableRow>
+
+        <TableRow
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content" >
+            <TextView
+                android:id="@+id/PhoneNumber"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_below="@id/Name"
+                android:layout_marginLeft="70dip"
+                android:textColor="#343434"
+                android:textSize="12sp" />
+        </TableRow>
+
+        <TableRow
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content" >
+            <TextView
+                android:id="@+id/callDayTime"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_below="@id/PhoneNumber"
+                android:layout_marginLeft="70dip"
+                android:visibility="gone"
+                android:textColor="#343434"
+                android:textSize="12sp" />
+
+        </TableRow>
+        <TableRow
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content" >
+        </TableRow>
+        <TableRow
+            android:id="@+id/tableRow1"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:orientation="vertical">
+
+            <TextView
+                android:id="@+id/CallNote"
+                android:layout_height="wrap_content"
+                android:textColor="#343434"
+                android:layout_width="fill_parent"
+                android:layout_weight="1"
+                android:layout_marginLeft="70dip"
+                android:textSize="14sp" />
+
+            <TextView
+                android:id="@+id/txtImgCallNote"
+                android:layout_width="24dp"
+                android:layout_height="24dp"
+                android:visibility="gone"
+                android:textSize="20sp"
+                android:text="@string/fa_plus_circle"
+                android:textColor="#DF0101"
+                />
+
+            <TextView
+                android:id="@+id/txtImgDelete"
+                android:layout_width="24dp"
+                android:layout_height="24dp"
+                android:textSize="20sp"
+                android:text="@string/fa_remove"
+                android:textColor="#DF0101"
+                 />
+
+            <TextView
+                android:id="@+id/txtSpeech"
+                android:layout_width="24dp"
+                android:layout_height="24dp"
+                android:layout_marginLeft="20dp"
+                android:textSize="20sp"
+                android:text="@string/fa_microphone"
+                />
+
+
+
+        </TableRow>
+        <TableRow
+            android:id="@+id/lastrow">
+            <RelativeLayout
+                android:layout_width="wrap_content"
+                android:id="@+id/relativeForEdit"
+                android:layout_height="wrap_content">
+            <EditText
+                android:id="@+id/edittext"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_marginLeft="70dip"
+                android:visibility="gone"
+                android:maxLength="100"
+                android:imeOptions = "flagNoFullscreen"
+                android:focusableInTouchMode="true"
+                android:text="" android:inputType="text">
+            </EditText>
+            </RelativeLayout>
+        </TableRow>
+
+        <TableRow
+            android:id="@+id/lastlastrow"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            >
+            <TextView
+                android:id="@+id/LastCalledInfo"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:textColor="#343434"
+                android:textStyle="italic"
+                android:layout_marginLeft="70dip"
+                android:layout_marginBottom="20dp"
+                android:textSize="12sp" />
+        </TableRow>
+    </TableLayout>
+</RelativeLayout>
