@@ -19,4 +19,6 @@
     <string name="fa_calendar_o">&#xf133;</string>
     <string name="fa_microphone">&#xf130;</string>
     <string name="title_activity_speech_to_text">SpeechToText</string>
+    <string name="fa_plus">&#xf067;</string>
+    <string name="fa_sun_o">&#xf185;</string>
 </resources>

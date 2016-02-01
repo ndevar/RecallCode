@@ -44,6 +44,7 @@ public class YCalledActivity extends Activity {
     Context context =this;
     DataBaseoperations db;
     public static CustomListAdapter adapter;
+    public static ArrayList<String> lstRemoveduplicateDate = new ArrayList<>();
     public static ArrayList<ContactInfo> lstContactinfo= new ArrayList<ContactInfo>();;
     protected static final int RESULT_SPEECH = 1;
     TextView txtcallNote;
@@ -105,6 +106,7 @@ public class YCalledActivity extends Activity {
     //Method to get the unanswered outgoing call log
     private void getCallDetails() {
         try {
+            lstRemoveduplicateDate.clear();
             ArrayList<String> lstremoveDuplicates = new ArrayList<String>();
             Cursor people = managedQuery(ContactsContract.Contacts.CONTENT_URI, null, null, null, null);
 
@@ -155,6 +157,8 @@ public class YCalledActivity extends Activity {
                                     checkDate.applyPattern("dd");
 
                                     if (date1.compareTo(date2) == 0) {
+                                        date1="Today";
+
                                         Datevalue = "Today";
                                         calldate = "";
                                         callday = "";
@@ -163,14 +167,24 @@ public class YCalledActivity extends Activity {
                                         int hours = Integer.parseInt(checkHour.format(today)) - Integer.parseInt(checkHour.format(callDayTime));
                                         int mins = Integer.parseInt(checkMin.format(today)) - Integer.parseInt(checkMin.format(callDayTime));
                                         calltime = "Last called " + Integer.toString(hours) + " Hour(s)" + Integer.toString(mins) + " mins ago";
+                                    }
 
-                                    } else {
+                                    else {
                                         callday = checkDay.format(callDayTime);
                                         calldate = checkDate.format(callDayTime);
                                         calltime = "Last called " + date1;
-                                        Datevalue = checkDay.format(callDayTime);
                                     }
-                                    ContactInfo contactInfo = new ContactInfo(phNumber, dspName, photo, callNote, Datevalue, calldate, callday, calltime);//,path);
+                                    if(!lstRemoveduplicateDate.contains(date1))
+                                    {
+                                        lstRemoveduplicateDate.add(date1);
+                                    }
+                                    else
+                                    {
+                                        date1="";
+                                    }
+
+
+                                    ContactInfo contactInfo = new ContactInfo(phNumber, dspName, photo, callNote, date1, calldate, callday, calltime);//,path);
                                     lstContactinfo.add(contactInfo);
                                     break;
 

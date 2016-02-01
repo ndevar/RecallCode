@@ -20,8 +20,10 @@ import android.widget.RelativeLayout;
 import android.widget.TextView;
 import android.widget.Toast;
 
+import java.lang.reflect.Array;
 import java.util.ArrayList;
 import java.util.Calendar;
+import java.util.List;
 
 
 /**
@@ -49,6 +51,8 @@ public class CustomListAdapter extends ArrayAdapter<ContactInfo>
                 convertView = mLayoutInflater.inflate(R.layout.listitem, null);
             }
 
+            TextView txtTodayDate = (TextView) convertView.findViewById(R.id.callDate23);
+
             TextView txtSpeech = (TextView) convertView.findViewById(R.id.txtSpeech);
 
             TextView txtName = (TextView) convertView.findViewById(R.id.Name);
@@ -58,10 +62,12 @@ public class CustomListAdapter extends ArrayAdapter<ContactInfo>
             TextView txtDay = (TextView) convertView.findViewById(R.id.callDay);
             ImageView imgView = (ImageView) convertView.findViewById(R.id.contactPhoto);
 
+            final TextView callNoteTxt = (TextView) convertView.findViewById(R.id.txtCallNote);
             final TextView txtCallNote = (TextView) convertView.findViewById(R.id.CallNote);
             final EditText editText = (EditText) convertView.findViewById(R.id.edittext);
             final TextView txtLastCallInfo = (TextView) convertView.findViewById(R.id.LastCalledInfo);
             final TextView btnCallNote = (TextView) convertView.findViewById(R.id.txtImgCallNote);
+            final TextView btnCallNoteAdded = (TextView) convertView.findViewById(R.id.txtImgCallNoteAdded);
             final TextView btnDelete = (TextView) convertView.findViewById(R.id.txtImgDelete);
 
 
@@ -233,12 +239,20 @@ public class CustomListAdapter extends ArrayAdapter<ContactInfo>
             });
             if (contactInfo._callNote.trim() != "") {
                 txtCallNote.setText("Call Note - " + contactInfo._callNote);
-                btnDelete.setVisibility(View.VISIBLE);
+                callNoteTxt.setText(contactInfo._callNote);
                 btnCallNote.setVisibility(View.GONE);
+                btnCallNoteAdded.setVisibility(View.VISIBLE);
+                //btnDelete.setVisibility(View.VISIBLE);
+                //btnCallNote.setVisibility(View.GONE);
+
             } else {
+                callNoteTxt.setText("Add Recall Note");
                 txtCallNote.setText("Call Note - Add Call Note");
-                btnDelete.setVisibility(View.GONE);
                 btnCallNote.setVisibility(View.VISIBLE);
+                btnCallNoteAdded.setVisibility(View.GONE);
+                //btnDelete.setVisibility(View.GONE);
+                //btnCallNote.setVisibility(View.VISIBLE);
+
             }
 
             txtName.setText(contactInfo._contactName);
@@ -249,7 +263,7 @@ public class CustomListAdapter extends ArrayAdapter<ContactInfo>
                 txtDate.setText("Today");
                 txtDay.setText("");
                 int randomColor = Color.rgb(255, 20, 147);
-                txtName.setTextColor(randomColor);
+                //txtName.setTextColor(randomColor);
                 txtDate.setTextColor(randomColor);
                 txtLastCallInfo.setText(contactInfo._callTime);
                 txtDate.setBackgroundResource(0);
@@ -257,12 +271,26 @@ public class CustomListAdapter extends ArrayAdapter<ContactInfo>
                 txtDate.setText(contactInfo._callDate);
                 txtDay.setText(contactInfo._callDay);
                 int randomColor = Color.rgb(30, 144, 225);
-                txtName.setTextColor(randomColor);
+                //txtName.setTextColor(randomColor);
                 txtDate.setTextColor(randomColor);
                 txtLastCallInfo.setText(contactInfo._callTime);
                 //imgCalender.setVisibility(View.VISIBLE);
                 txtDate.setBackgroundResource(R.drawable.calender);
             }
+
+            //Log.d("test","The value is "+contactInfo._dateValue.toString());
+            //Toast.makeText(getContext().getApplicationContext(),contactInfo._dateValue,Toast.LENGTH_SHORT);
+            if(contactInfo._dateValue!="")
+            {
+                txtTodayDate.setVisibility(View.VISIBLE);
+                txtTodayDate.setText(contactInfo._dateValue);
+            }
+            else
+            {
+                txtTodayDate.setVisibility(View.GONE);
+            }
+
+
 
             txtPhoneNumber.setText(contactInfo._phoneNumber);
             txtcallDetails.setText(contactInfo._dateValue);
@@ -277,6 +305,7 @@ public class CustomListAdapter extends ArrayAdapter<ContactInfo>
             FontManager.markAsIconContainer(convertView.findViewById(R.id.txtImgCallNote), iconFont);
             FontManager.markAsIconContainer(convertView.findViewById(R.id.txtImgDelete), iconFont);
             FontManager.markAsIconContainer(convertView.findViewById(R.id.txtSpeech), iconFont);
+            FontManager.markAsIconContainer(convertView.findViewById(R.id.txtImgCallNoteAdded), iconFont);
             return convertView;
         }
         catch(Exception ex)
